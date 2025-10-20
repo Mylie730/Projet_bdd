@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ventes - Tableau consolidé</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:insert="fragments/header :: header"></header>
+
+<section class="container">
+    <h2>Liste des ventes</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Produit</th>
+            <th>Montant</th>
+            <th>Région</th>
+            <th>Date</th>
+            <th>Dernière mise à jour</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vente : ${ventes}">
+            <td th:text="${vente.produit}"></td>
+            <td th:text="${vente.montant}"></td>
+            <td th:text="${vente.region}"></td>
+            <td th:text="${#temporals.format(vente.dateVente, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(vente.updatedAt, 'dd/MM/yyyy HH:mm')}"></td>
+            <td>
+                <a class="btn delete" th:href="@{|/ventes/delete/${vente.id}|}"
+                   onclick="return confirm('Supprimer cette vente ?');">
+                    ❌ Supprimer
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="actions">
+        <a class="btn" th:href="@{/ventes/ajouter}">+ Ajouter une vente</a>
+        <a class="btn sync" th:href="@{/ventes/sync}">🔁 Synchroniser maintenant</a>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une vente</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:insert="fragments/header :: header"></header>
+
+<section class="container">
+    <h2>Nouvelle vente</h2>
+    <form th:action="@{/ventes/ajouter}" th:object="${vente}" method="post">
+        <label>Produit :</label>
+        <input type="text" th:field="*{produit}" required/>
+
+        <label>Montant :</label>
+        <input type="number" th:field="*{montant}" step="0.01" required/>
+
+        <label>Région :</label>
+        <select th:field="*{region}">
+            <option value="DAKAR">Dakar</option>
+            <option value="THIES">Thiès</option>
+            <option value="STLOUIS">Saint-Louis</option>
+        </select>
+
+        <button type="submit" class="btn">Enregistrer</button>
+    </form>
+</section>
+</body>
+</html>
