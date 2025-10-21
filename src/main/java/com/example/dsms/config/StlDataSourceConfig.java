@@ -16,7 +16,11 @@ import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(
-    basePackages = "com.example.dsms.stl.repository",
+    basePackages = "com.example.dsms.repository",
+        includeFilters = @ComponentScan.Filter(
+                type = FilterType.ASSIGNABLE_TYPE,
+                classes = com.example.dsms.repository.VenteRepositoryStl.class
+        ),
     entityManagerFactoryRef = "stlEntityManagerFactory",
     transactionManagerRef = "stlTransactionManager"
 )
@@ -36,7 +40,7 @@ public class StlDataSourceConfig {
                 .build();
     }
 
-    @Bean
+    @Bean(name = "stlEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean stlEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(stlDataSource());
@@ -50,7 +54,7 @@ public class StlDataSourceConfig {
         return emf;
     }
 
-    @Bean
+    @Bean(name = "stlTransactionManager")
     public PlatformTransactionManager sltTransactionManager(
             @Autowired @Qualifier("stlEntityManagerFactory") LocalContainerEntityManagerFactoryBean stlEntityManagerFactory) {
         return new JpaTransactionManager(stlEntityManagerFactory.getObject());

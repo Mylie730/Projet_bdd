@@ -18,6 +18,10 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories(
     basePackages = "com.example.dsms.repository",
+        includeFilters = @ComponentScan.Filter(
+                type = FilterType.ASSIGNABLE_TYPE,
+                classes = com.example.dsms.repository.VenteRepositoryDakar.class
+        ),
     entityManagerFactoryRef = "dakarEntityManagerFactory",
     transactionManagerRef = "dakarTransactionManager"
 )
@@ -37,7 +41,7 @@ public class DakarDataSourceConfig {
                 .build();
     }
 
-    @Bean
+    @Bean(name = "dakarEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean dakarEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dakarDataSource());
@@ -51,7 +55,7 @@ public class DakarDataSourceConfig {
         return emf;
     }
 
-    @Bean
+    @Bean(name = "dakarTransactionManager")
     public PlatformTransactionManager dakarTransactionManager(
             @Autowired @Qualifier("dakarEntityManagerFactory") LocalContainerEntityManagerFactoryBean dakarEntityManagerFactory) {
         return new JpaTransactionManager(dakarEntityManagerFactory.getObject());

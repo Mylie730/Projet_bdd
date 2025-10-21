@@ -16,7 +16,11 @@ import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(
-    basePackages = "com.example.dsms.thies.repository",
+    basePackages = "com.example.dsms.repository",
+        includeFilters = @ComponentScan.Filter(
+                type = FilterType.ASSIGNABLE_TYPE,
+                classes = com.example.dsms.repository.VenteRepositoryThies.class
+        ),
     entityManagerFactoryRef = "thiesEntityManagerFactory",
     transactionManagerRef = "thiesTransactionManager"
 )
@@ -36,7 +40,7 @@ public class ThiesDataSourceConfig {
                 .build();
     }
 
-    @Bean
+    @Bean(name = "thiesEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean thiesEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(thiesDataSource());
@@ -50,7 +54,7 @@ public class ThiesDataSourceConfig {
         return emf;
     }
 
-    @Bean
+    @Bean(name = "thiesTransactionManager")
     public PlatformTransactionManager thiesTransactionManager(
             @Autowired @Qualifier("thiesEntityManagerFactory") LocalContainerEntityManagerFactoryBean thiesEntityManagerFactory) {
         return new JpaTransactionManager(thiesEntityManagerFactory.getObject());
