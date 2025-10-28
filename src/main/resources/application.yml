@@ -1,3 +1,30 @@
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#
+#app:
+#  datasources:
+#    dakar:
+#      url: jdbc:postgresql://ep-raspy-snow-a9dnu1oi-pooler.gwc.azure.neon.tech/ventes_dakar?sslmode=require&channelBinding=require
+#      username: dsms_user
+#      password: npg_qGNglDz3Pxf1
+#    thies:
+#      url: jdbc:postgresql://ep-red-water-a9zskf8l-pooler.gwc.azure.neon.tech/ventes_thies?sslmode=require&channelBinding=require
+#      username: dsms_user
+#      password: npg_XjmkTzM0wR8I
+#    stl:
+#      url: jdbc:postgresql://ep-fancy-wind-a9exiwpf-pooler.gwc.azure.neon.tech/ventes_stlouis?sslmode=require&channelBinding=require
+#      username: dsms_user
+#      password: npg_8nRGbXA3LZOQ
+#
+#sync:
+#  interval-seconds: 60
+
 spring:
   jpa:
     hibernate:
@@ -10,17 +37,15 @@ spring:
 app:
   datasources:
     dakar:
-      url: jdbc:postgresql://ep-raspy-snow-a9dnu1oi-pooler.gwc.azure.neon.tech/ventes_dakar?sslmode=require&channelBinding=require
+      url: jdbc:postgresql://localhost:5432/ventes_dakar
       username: dsms_user
-      password: npg_qGNglDz3Pxf1
+      password: dsms_pass
     thies:
-      url: jdbc:postgresql://ep-red-water-a9zskf8l-pooler.gwc.azure.neon.tech/ventes_thies?sslmode=require&channelBinding=require
+      url: jdbc:postgresql://localhost:5432/ventes_thies
       username: dsms_user
-      password: npg_XjmkTzM0wR8I
+      password: dsms_pass
     stl:
-      url: jdbc:postgresql://ep-fancy-wind-a9exiwpf-pooler.gwc.azure.neon.tech/ventes_stlouis?sslmode=require&channelBinding=require
+      url: jdbc:postgresql://localhost:5432/ventes_stlouis
       username: dsms_user
-      password: npg_8nRGbXA3LZOQ
+      password: dsms_pass
 
-sync:
-  interval-seconds: 60
