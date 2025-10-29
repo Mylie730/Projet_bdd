@@ -146,3 +146,23 @@ a.btn {
 a.btn:hover {
     background-color: #5a6268;
 }
+.filters {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.btn.filter {
+    background-color: #e8eef6;
+    color: #333;
+    margin: 3px;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+.btn.filter:hover {
+    background-color: #0054a6;
+    color: white;
+}
+.btn.filter.active {
+    background-color: #0054a6;
+    color: white;
+}

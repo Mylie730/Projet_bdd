@@ -10,6 +10,16 @@
 
 <section class="container">
     <h2>Liste des ventes</h2>
+    <div class="filters">
+        <a th:href="@{/ventes}" class="btn filter"
+           th:classappend="${region == 'TOUTES'} ? ' active'">🌍 Toutes</a>
+        <a th:href="@{/ventes(region='DAKAR')}" class="btn filter"
+           th:classappend="${region == 'DAKAR'} ? ' active'">🏙️ Dakar</a>
+        <a th:href="@{/ventes(region='THIES')}" class="btn filter"
+           th:classappend="${region == 'THIES'} ? ' active'">🏡 Thiès</a>
+        <a th:href="@{/ventes(region='STLOUIS')}" class="btn filter"
+           th:classappend="${region == 'STLOUIS'} ? ' active'">🌊 Saint-Louis</a>
+    </div>
 
     <table>
         <thead>

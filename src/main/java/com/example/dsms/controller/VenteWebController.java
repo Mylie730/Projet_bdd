@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -18,10 +19,20 @@ public class VenteWebController {
         this.multiVenteService = multiVenteService;
     }
 
-    // ✅ Liste de toutes les ventes
     @GetMapping
-    public String listeVentes(Model model) {
-        model.addAttribute("ventes", multiVenteService.findAllConsolidated());
+    public String listeVentes(@RequestParam(required = false) String region, Model model) {
+        // Récupération de TOUTES les ventes consolidées
+        List<Vente> ventes = multiVenteService.findAllConsolidated();
+
+        // Si une région est précisée, on filtre
+        if (region != null && !region.isBlank()) {
+            ventes.removeIf(v -> !v.getRegion().equalsIgnoreCase(region));
+            model.addAttribute("region", region.toUpperCase());
+        } else {
+            model.addAttribute("region", "TOUTES");
+        }
+
+        model.addAttribute("ventes", ventes);
         return "ventes";
     }
 
