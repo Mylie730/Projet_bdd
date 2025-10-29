@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier la vente</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:insert="fragments/header :: header"></header>
+
+<section class="container">
+  <h2>✏️ Modifier la vente</h2>
+
+  <form th:action="@{/ventes/update}" th:object="${vente}" method="post" class="form-card">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Produit :</label>
+    <input type="text" th:field="*{produit}" required><br>
+
+    <label>Montant (FCFA) :</label>
+    <input type="number" step="0.01" th:field="*{montant}" required><br>
+
+    <label>Région :</label>
+    <input type="text" th:field="*{region}" required><br>
+
+    <label>Date de vente :</label>
+    <input type="date" th:field="*{dateVente}" required><br>
+
+    <<div class="form-actions">
+    <button type="submit" class="btn edit">💾 Enregistrer</button>
+    <a th:href="@{/ventes}" class="btn">↩ Retour</a>
+  </div>
+  </form>
+</section>
+</body>
+</html>

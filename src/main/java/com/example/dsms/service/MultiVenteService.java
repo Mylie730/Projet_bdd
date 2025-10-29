@@ -79,5 +79,15 @@ public class MultiVenteService {
         try { deleteFromThies(id); } catch (Exception ignored) {}
         try { deleteFromStl(id); } catch (Exception ignored) {}
     }
+    public Vente findById(UUID id) {
+        return dakar.findById(id)
+                .or(() -> thies.findById(id))
+                .or(() -> stl.findById(id))
+                .orElse(null);
+    }
 
+    public void updateInAll(Vente vente) {
+        // met à jour dans toutes les bases
+        upsertToAll(vente);
+    }
 }

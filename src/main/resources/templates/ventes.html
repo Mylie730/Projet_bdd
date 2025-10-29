@@ -30,6 +30,7 @@
             <td th:text="${#temporals.format(vente.dateVente, 'dd/MM/yyyy')}"></td>
             <td th:text="${#temporals.format(vente.updatedAt, 'dd/MM/yyyy HH:mm')}"></td>
             <td>
+                <a class="btn edit" th:href="@{|/ventes/edit/${vente.id}|}">✏️ Modifier</a>
                 <a class="btn delete" th:href="@{|/ventes/delete/${vente.id}|}"
                    onclick="return confirm('Supprimer cette vente ?');">
                     ❌ Supprimer

@@ -105,3 +105,44 @@ button {
 button:hover {
     background-color: #003f7f;
 }
+.btn.edit {
+  background-color: #f1c40f;
+  color: #222;
+}
+/* ---- Boutons du formulaire (Enregistrer / Retour) ---- */
+.form-actions {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    gap: 15px;               /* Espace entre les deux boutons */
+    margin-top: 25px;
+}
+
+button.btn {
+    background-color: #0054a6;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+}
+
+button.btn:hover {
+    background-color: #003f7f;
+}
+
+a.btn {
+    background-color: #6c757d; /* gris doux pour le bouton Retour */
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+}
+
+a.btn:hover {
+    background-color: #5a6268;
+}
